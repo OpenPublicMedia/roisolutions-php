@@ -10,6 +10,7 @@ use OpenPublicMedia\RoiSolutions\Exception\AccessDeniedException;
 use OpenPublicMedia\RoiSolutions\Exception\NotFoundException;
 use OpenPublicMedia\RoiSolutions\Exception\RequestException;
 use OpenPublicMedia\RoiSolutions\Exception\TooManyRequestsException;
+use OpenPublicMedia\RoiSolutions\Resource\Donor;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -186,5 +187,15 @@ class Client
     {
         $response = $this->get('time');
         return new \DateTime($response->roi_system_datetime);
+    }
+
+    /**
+     * Gets a single donor record based on a ROI Family ID.
+     *
+     * @url https://secure2.roisolutions.net/api/help/#/donors/get-donor
+     */
+    public function getDonor(string $roiFamilyId): Donor
+    {
+        return Donor::fromJson($this->get("donors/$roiFamilyId"));
     }
 }

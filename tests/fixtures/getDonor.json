@@ -1,0 +1,56 @@
+{
+    "links": [
+        {
+            "rel": "self",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567"
+        },
+        {
+            "rel": "address_others",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/address-others"
+        },
+        {
+            "rel": "email_addresses",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/emails"
+        },
+        {
+            "rel": "donations",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/donations"
+        },
+        {
+            "rel": "donationsummary",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/donationsummary"
+        },
+        {
+            "rel": "memberships",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/memberships"
+        },
+        {
+            "rel": "submemberships",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/submemberships"
+        },
+        {
+            "rel": "phone_numbers",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/phones"
+        },
+        {
+            "rel": "payment_tokens",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/payment-tokens"
+        },
+        {
+            "rel": "pledges",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/pledges"
+        }
+    ],
+    "roi_id": "1234567",
+    "roi_family_id": "1234567",
+    "origination_vendor": "ROI_CONVERSION",
+    "name_first": "John",
+    "name_last": "Doe",
+    "account_status": "ACTIVE",
+    "account_added_date": "2021-01-26T13:47:51.000Z",
+    "modified_date": "2023-08-17T20:41:49.000Z",
+    "address_line": "John Doe",
+    "do_not_contact": "true",
+    "name_full": "John Doe",
+    "salutation": "John"
+}

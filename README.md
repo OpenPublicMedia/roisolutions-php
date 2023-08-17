@@ -92,6 +92,7 @@ this project.
   - [x] [Get time](https://secure2.roisolutions.net/api/help/#/system/get-time)
 - [ ] Donors
   - [ ] [Search donors](https://secure2.roisolutions.net/api/help/#/donors/get-donors)
-  - [ ] [Get donor](https://secure2.roisolutions.net/api/help/#/donors/get-donor)
+  - [x] [Get donor](https://secure2.roisolutions.net/api/help/#/donors/get-donor)
+    - [ ] Support for advanced query parameters (`include`, `summary.*`, `donations.*`)
   - [ ] [Create donor](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/post-donor) (BETA)
   - [ ] [Update donor](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/patch-donors) (BETA)
