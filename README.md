@@ -60,7 +60,7 @@ Custom exceptions are provided for 404 response and general errors. Additional
 information from the API response is captured in these exceptions.
 
 ```php
-use \OpenPublicMedia\RoiSolutions\Exception\RequestException;
+use OpenPublicMedia\RoiSolutions\Rest\Exception\RequestException;
 
 try {
     $results = $client->request('get', 'donors');

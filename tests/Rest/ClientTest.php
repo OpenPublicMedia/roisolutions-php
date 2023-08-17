@@ -6,8 +6,8 @@ namespace OpenPublicMedia\RoiSolutions\Test\Rest;
 
 use DateTime;
 use GuzzleHttp\Psr7\Response;
-use OpenPublicMedia\RoiSolutions\Exception\NotFoundException;
-use OpenPublicMedia\RoiSolutions\Resource\Donor;
+use OpenPublicMedia\RoiSolutions\Rest\Exception\NotFoundException;
+use OpenPublicMedia\RoiSolutions\Rest\Resource\Donor;
 use OpenPublicMedia\RoiSolutions\Test\TestCaseBase;
 
 /**

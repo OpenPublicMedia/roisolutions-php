@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenPublicMedia\RoiSolutions\Exception;
+namespace OpenPublicMedia\RoiSolutions\Rest\Exception;
 
 /**
  * ROI Solutions REST API "too many requests" (429) exception.

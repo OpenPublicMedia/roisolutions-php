@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenPublicMedia\RoiSolutions\Exception;
+namespace OpenPublicMedia\RoiSolutions\Rest\Exception;
 
 /**
  * ROI Solutions REST API "not found" (404) exception.

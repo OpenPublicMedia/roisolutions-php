@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenPublicMedia\RoiSolutions\Exception;
+namespace OpenPublicMedia\RoiSolutions\Rest\Exception;
 
 use Psr\Http\Message\ResponseInterface;
 use RuntimeException;

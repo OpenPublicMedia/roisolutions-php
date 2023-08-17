@@ -6,11 +6,9 @@ namespace OpenPublicMedia\RoiSolutions\Rest;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\GuzzleException;
-use OpenPublicMedia\RoiSolutions\Exception\AccessDeniedException;
-use OpenPublicMedia\RoiSolutions\Exception\NotFoundException;
-use OpenPublicMedia\RoiSolutions\Exception\RequestException;
-use OpenPublicMedia\RoiSolutions\Exception\TooManyRequestsException;
-use OpenPublicMedia\RoiSolutions\Resource\Donor;
+use OpenPublicMedia\RoiSolutions\Rest\Exception\RequestException;
+use OpenPublicMedia\RoiSolutions\Rest\Resource\Donor;
+use OpenPublicMedia\RoiSolutions\Rest\SearchResults\DonorSearchResults;
 use Psr\Http\Message\ResponseInterface;
 
 /**

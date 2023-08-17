@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenPublicMedia\RoiSolutions\Resource;
+namespace OpenPublicMedia\RoiSolutions\Rest\Resource;
 
 use DateTime;
 
