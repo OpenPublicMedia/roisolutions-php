@@ -1,0 +1,19 @@
+{
+    "links": [
+        {
+            "rel": "self",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/emails/987654"
+        },
+        {
+            "rel": "parent",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567"
+        }
+    ],
+    "roi_id": "1234567",
+    "roi_family_id": "1234567",
+    "email_id": "987654",
+    "email_type": "Business Email 2",
+    "contact_status": "Y",
+    "email_address": "jane.doe@example.com",
+    "email_bounced": "N"
+}

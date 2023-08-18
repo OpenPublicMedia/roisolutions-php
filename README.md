@@ -96,5 +96,10 @@ this project.
     - [ ] Sub-resources support
   - [x] [Get donor](https://secure2.roisolutions.net/api/help/#/donors/get-donor)
     - [ ] Support for advanced query parameters (`include`, `summary.*`, `donations.*`)
-  - [ ] [Create donor](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/post-donor) (BETA)
+    - [ ] [Get flags](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/get-donor-accountflags) (BETA)
+  - [x] [Create donor](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/post-donor) (BETA)
+    - [x] [Add email](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/post-donor-email)
+    - [ ] [Add account flag](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/post-donor-accountflags)
+    - [ ] [Add primary address](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/post-donor-address-primary)
+    - [ ] [Add phone](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/post-donor-phone)
   - [ ] [Update donor](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/patch-donors) (BETA)

@@ -8,6 +8,7 @@ use DateTime;
 use GuzzleHttp\Psr7\Response;
 use OpenPublicMedia\RoiSolutions\Rest\Exception\NotFoundException;
 use OpenPublicMedia\RoiSolutions\Rest\Resource\Donor;
+use OpenPublicMedia\RoiSolutions\Rest\Resource\DonorEmailAddress;
 use OpenPublicMedia\RoiSolutions\Rest\SearchResults\DonorSearchResults;
 use OpenPublicMedia\RoiSolutions\Test\TestCaseBase;
 
@@ -59,13 +60,14 @@ class ClientTest extends TestCaseBase
         $this->restClient->getDonor("9999999999");
     }
 
-    public function testSearchDonors(): void {
+    public function testSearchDonors(): void
+    {
         $this->mockHandler->append(
             $this->jsonFixtureResponse('searchDonors-1'),
             $this->jsonFixtureResponse('postLogon'),
             $this->jsonFixtureResponse('searchDonors-2')
         );
-        $results = $this->restClient->searchDonors(lastName: 'Doe');
+        $results = $this->restClient->searchDonors(nameLast: 'Doe');
         $this->assertInstanceOf(DonorSearchResults::class, $results);
         $this->assertContainsOnlyInstancesOf(Donor::class, $results->getItems());
         $this->assertEquals(2, $results->getTotalPages());
@@ -76,5 +78,33 @@ class ClientTest extends TestCaseBase
         $this->assertEquals(2, $results->getPage());
         $this->assertCount(2, $results->getItems());
         $this->assertContainsOnlyInstancesOf(Donor::class, $results->getItems());
+    }
+
+    public function testAddDonor(): void
+    {
+        $this->mockHandler->append($this->jsonFixtureResponse('addDonor'));
+        $parameters = ['VENDOR1234', 'Doe', 'Jane', 'A.', 'MRS.', 'Jr.', true];
+        $donor = $this->restClient->addDonor(...$parameters);
+        $this->assertInstanceOf(Donor::class, $donor);
+        $this->assertEquals($parameters[0], $donor->getOriginationVendor());
+        $this->assertEquals($parameters[1], $donor->getNameLast());
+        $this->assertEquals($parameters[2], $donor->getNameFirst());
+        $this->assertEquals($parameters[3], $donor->getNameMiddle());
+        $this->assertEquals($parameters[4], strtoupper($donor->getNamePrefix()));
+        $this->assertEquals($parameters[5], $donor->getNameSuffix());
+        $this->assertEquals($parameters[6], $donor->getDoNotContact());
+    }
+
+    public function testAddDonorEmail(): void
+    {
+        $this->mockHandler->append($this->jsonFixtureResponse('addDonorEmail'));
+        $emailAddress = 'jane.doe@example.com';
+        $donorEmailAddress = $this->restClient->addDonorEmailAddress(
+            '1234567',
+            'VENDOR123',
+            $emailAddress
+        );
+        $this->assertInstanceOf(DonorEmailAddress::class, $donorEmailAddress);
+        $this->assertEquals($emailAddress, $donorEmailAddress->getEmailAddress());
     }
 }

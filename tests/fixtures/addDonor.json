@@ -1,0 +1,59 @@
+{
+    "links": [
+        {
+            "rel": "self",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567"
+        },
+        {
+            "rel": "address_others",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/address-others"
+        },
+        {
+            "rel": "email_addresses",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/emails"
+        },
+        {
+            "rel": "donations",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/donations"
+        },
+        {
+            "rel": "donationsummary",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/donationsummary"
+        },
+        {
+            "rel": "memberships",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/memberships"
+        },
+        {
+            "rel": "submemberships",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/submemberships"
+        },
+        {
+            "rel": "phone_numbers",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/phones"
+        },
+        {
+            "rel": "payment_tokens",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/payment-tokens"
+        },
+        {
+            "rel": "pledges",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/pledges"
+        }
+    ],
+    "roi_id": "1234567",
+    "roi_family_id": "1234567",
+    "origination_vendor": "VENDOR1234",
+    "name_first": "Jane",
+    "name_last": "Doe",
+    "name_middle": "A.",
+    "name_prefix": "Mrs.",
+    "name_suffix": "Jr.",
+    "account_status": "ACTIVE",
+    "account_added_date": "2023-08-18T04:00:00.000Z",
+    "modified_date": "2023-08-18T18:04:16.000Z",
+    "address_line": "Jane A. Doe Jr.",
+    "do_not_contact": "true",
+    "name_full": "Jane A. Doe Jr.",
+    "salutation": "Jane"
+}

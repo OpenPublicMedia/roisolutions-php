@@ -9,6 +9,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\GuzzleException;
 use OpenPublicMedia\RoiSolutions\Rest\Exception\RequestException;
 use OpenPublicMedia\RoiSolutions\Rest\Resource\Donor;
+use OpenPublicMedia\RoiSolutions\Rest\Resource\DonorEmailAddress;
 use OpenPublicMedia\RoiSolutions\Rest\SearchResults\DonorSearchResults;
 use Psr\Http\Message\ResponseInterface;
 
@@ -200,13 +201,15 @@ class Client
 
     /**
      * Searches donor records with provided criteria.
+     *
+     * @url https://secure2.roisolutions.net/api/help/#/donors/get-donors
      */
     public function searchDonors(
         ?int $page = null,
         ?int $limit = null,
         ?string $email = null,
-        ?string $firstName = null,
-        ?string $lastName = null,
+        ?string $nameFirst = null,
+        ?string $nameLast = null,
         ?string $street = null,
         ?string $city = null,
         ?string $state = null,
@@ -222,8 +225,8 @@ class Client
         }
         $query = [];
         $query['email'] = $email;
-        $query['name-first'] = $firstName;
-        $query['name-last'] = $lastName;
+        $query['name-first'] = $nameFirst;
+        $query['name-last'] = $nameLast;
         $query['street'] = $street;
         $query['city'] = $city;
         $query['state'] = $state;
@@ -237,5 +240,52 @@ class Client
         $query['page'] = $page;
         $query['limit'] = $limit;
         return new DonorSearchResults($this, $query);
+    }
+
+    /**
+     * Adds a new donor.
+     *
+     * @url https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/post-donor
+     */
+    public function addDonor(
+        string $originationVendor,
+        string $nameLast,
+        ?string $nameFirst = null,
+        ?string $nameMiddle = null,
+        ?string $namePrefixCode = null,
+        ?string $nameSuffix = null,
+        ?bool $doNotContact = null
+    ): Donor {
+        return Donor::fromJson($this->post('donors', ['json' => [
+            'origination_vendor' => $originationVendor,
+            'name_last' => $nameLast,
+            'name_first' => $nameFirst,
+            'name_middle' => $nameMiddle,
+            // Name prefix codes do not appear to work (tested 18 Aug 2023).
+            'name_prefix_code' => $namePrefixCode,
+            'name_suffix' => $nameSuffix,
+            'do_not_contact' => $doNotContact ? (string) $doNotContact : null,
+        ]]));
+    }
+
+    /**
+     * Adds a new email address to an existing donor.
+     */
+    public function addDonorEmailAddress(
+        string $roiFamilyId,
+        string $originationVendor,
+        string $emailAddress,
+        ?string $typeCode = null,
+        ?DateTime $verificationDate = null,
+        ?bool $emailBounced = null,
+    ): DonorEmailAddress {
+        $json = [
+            'origination_vendor' => $originationVendor,
+            'email_address' => $emailAddress,
+            'email_type_code' => $typeCode,
+            'verification_date' => $verificationDate?->format('Y-m-d\TH:i:s.000p') ?? null,
+            'email_bounced' => $emailBounced === true ? 'Y' : ($emailBounced === false ? 'N' : null)
+        ];
+        return DonorEmailAddress::fromJson($this->post("donors/$roiFamilyId/emails", ['json' => array_filter($json)]));
     }
 }
