@@ -3,9 +3,12 @@
 namespace OpenPublicMedia\RoiSolutions\Rest\Resource;
 
 use DateTime;
+use OpenPublicMedia\RoiSolutions\Rest\Traits\HasLinks;
 
 final class Donor
 {
+    use HasLinks;
+
     /**
      * @param array<string, string> $links
      */
@@ -15,9 +18,9 @@ final class Donor
         protected readonly string $originationVendor,
         protected readonly string $accountStatus,
         protected readonly bool $doNotContact,
-        protected readonly DateTime $accountAddedDate,
-        protected readonly DateTime $modifiedDate,
         protected readonly array $links = [],
+        protected readonly ?DateTime $accountAddedDate = null,
+        protected readonly ?DateTime $modifiedDate = null,
         protected readonly ?string $nameFirst = null,
         protected readonly ?string $nameLast = null,
         protected readonly ?string $nameMiddle = null,
@@ -31,22 +34,15 @@ final class Donor
 
     public static function fromJson(object $json): Donor
     {
-        $links = [];
-        if (property_exists($json, 'links')) {
-            foreach ($json->links as $link) {
-                $links[$link->rel] = $link->href;
-            }
-        }
-
         return new Donor(
             $json->roi_family_id,
             $json->roi_id,
             $json->origination_vendor,
             $json->account_status,
             (bool) $json->do_not_contact,
-            (new DateTime($json->account_added_date)),
-            (new DateTime($json->modified_date)),
-            $links,
+            self::fromLinksJson($json->links),
+            property_exists($json, 'account_added_date') ? (new DateTime($json->account_added_date)) : null,
+            property_exists($json, 'modified_date') ? (new DateTime($json->modified_date)) : null,
             $json->name_first ?? null,
             $json->name_last ?? null,
             $json->name_middle ?? null,
@@ -91,19 +87,6 @@ final class Donor
     public function getModifiedDate(): DateTime
     {
         return $this->modifiedDate;
-    }
-
-    /**
-     * @return array<string, string>
-     */
-    public function getLinks(): array
-    {
-        return $this->links;
-    }
-
-    public function getLink(string $rel): ?string
-    {
-        return $this->links[$rel] ?? null;
     }
 
     public function getNameFirst(): ?string

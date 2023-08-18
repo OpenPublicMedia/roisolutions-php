@@ -8,6 +8,7 @@ use DateTime;
 use GuzzleHttp\Psr7\Response;
 use OpenPublicMedia\RoiSolutions\Rest\Exception\NotFoundException;
 use OpenPublicMedia\RoiSolutions\Rest\Resource\Donor;
+use OpenPublicMedia\RoiSolutions\Rest\SearchResults\DonorSearchResults;
 use OpenPublicMedia\RoiSolutions\Test\TestCaseBase;
 
 /**
@@ -56,5 +57,24 @@ class ClientTest extends TestCaseBase
         $this->mockHandler->append($this->jsonFixtureResponse('postLogon'), $this->apiErrorResponse(404));
         $this->expectException(NotFoundException::class);
         $this->restClient->getDonor("9999999999");
+    }
+
+    public function testSearchDonors(): void {
+        $this->mockHandler->append(
+            $this->jsonFixtureResponse('searchDonors-1'),
+            $this->jsonFixtureResponse('postLogon'),
+            $this->jsonFixtureResponse('searchDonors-2')
+        );
+        $results = $this->restClient->searchDonors(lastName: 'Doe');
+        $this->assertInstanceOf(DonorSearchResults::class, $results);
+        $this->assertContainsOnlyInstancesOf(Donor::class, $results->getItems());
+        $this->assertEquals(2, $results->getTotalPages());
+        $this->assertEquals(22, $results->getTotalRecords());
+        $this->assertEquals(1, $results->getPage());
+        $this->assertCount(20, $results->getItems());
+        $results->getNextPage();
+        $this->assertEquals(2, $results->getPage());
+        $this->assertCount(2, $results->getItems());
+        $this->assertContainsOnlyInstancesOf(Donor::class, $results->getItems());
     }
 }

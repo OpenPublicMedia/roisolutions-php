@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OpenPublicMedia\RoiSolutions\Rest;
 
+use DateTime;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\GuzzleException;
 use OpenPublicMedia\RoiSolutions\Rest\Exception\RequestException;
@@ -170,10 +171,10 @@ class Client
      *
      * @url https://secure2.roisolutions.net/api/help/#/system/get-time
      */
-    public function getUtcTime(): \DateTime
+    public function getUtcTime(): DateTime
     {
         $response = $this->get('time');
-        return new \DateTime($response->utc_datetime);
+        return new DateTime($response->utc_datetime);
     }
 
     /**
@@ -181,10 +182,10 @@ class Client
      *
      * @url https://secure2.roisolutions.net/api/help/#/system/get-time
      */
-    public function getSystemTime(): \DateTime
+    public function getSystemTime(): DateTime
     {
         $response = $this->get('time');
-        return new \DateTime($response->roi_system_datetime);
+        return new DateTime($response->roi_system_datetime);
     }
 
     /**
@@ -195,5 +196,46 @@ class Client
     public function getDonor(string $roiFamilyId): Donor
     {
         return Donor::fromJson($this->get("donors/$roiFamilyId"));
+    }
+
+    /**
+     * Searches donor records with provided criteria.
+     */
+    public function searchDonors(
+        ?int $page = null,
+        ?int $limit = null,
+        ?string $email = null,
+        ?string $firstName = null,
+        ?string $lastName = null,
+        ?string $street = null,
+        ?string $city = null,
+        ?string $state = null,
+        ?string $postalCode = null,
+        ?string $phone = null,
+        ?string $externalId = null,
+        ?string $externalIdType = null
+    ): DonorSearchResults {
+        if (($externalId && !$externalIdType)
+            || ($externalIdType && !$externalId)
+        ) {
+            throw new \RuntimeException("Both externalId and externalIdType must be set.");
+        }
+        $query = [];
+        $query['email'] = $email;
+        $query['name-first'] = $firstName;
+        $query['name-last'] = $lastName;
+        $query['street'] = $street;
+        $query['city'] = $city;
+        $query['state'] = $state;
+        $query['postal-code'] = $postalCode;
+        $query['phone'] = $phone;
+        $query['external-id'] = $externalId;
+        $query['external-id-type'] = $externalIdType;
+        if (empty(array_filter($query))) {
+            throw new \RuntimeException("At least one search query parameter must be provided.");
+        }
+        $query['page'] = $page;
+        $query['limit'] = $limit;
+        return new DonorSearchResults($this, $query);
     }
 }
