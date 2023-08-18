@@ -2,7 +2,7 @@
 
 Contributions are **welcome** and will be fully **credited**.
 
-We accept contributions via Pull Requests on Github at [OpenPublicMedia/engaging-networks-php](https://github.com/OpenPublicMedia/engaging-networks-php).
+We accept contributions via Pull Requests on Github at [OpenPublicMedia/roisolutions-php](https://github.com/OpenPublicMedia/engaging-networks-php).
 
 All code should adhere to the [PSR-2 Coding Standard](https://www.php-fig.org/psr/psr-2/).
 

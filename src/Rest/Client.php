@@ -55,7 +55,7 @@ class Client
     /**
      * Gets an API token, refreshing it if necessary.
      *
-     * @url https://www.engagingnetworks.support/api/rest/#/operations/authenticate
+     * @url https://secure2.roisolutions.net/api/help/#/system/post-logon
      */
     private function getToken(): ?string
     {
