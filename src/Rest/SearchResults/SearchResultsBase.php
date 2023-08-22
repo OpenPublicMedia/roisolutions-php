@@ -2,10 +2,16 @@
 
 namespace OpenPublicMedia\RoiSolutions\Rest\SearchResults;
 
+use ArrayIterator;
+use Countable;
+use IteratorAggregate;
 use OpenPublicMedia\RoiSolutions\Rest\Client;
 use OpenPublicMedia\RoiSolutions\Rest\Traits\HasLinks;
 
-abstract class SearchResultsBase implements SearchResultsInterface
+/**
+ * @implements IteratorAggregate<int, mixed>
+ */
+abstract class SearchResultsBase implements IteratorAggregate, Countable, SearchResultsInterface
 {
     use HasLinks;
 
@@ -13,7 +19,6 @@ abstract class SearchResultsBase implements SearchResultsInterface
     protected int $limit;
     protected int $totalPages;
     protected int $totalRecords;
-    protected int $lastItemIndex = -1;
 
     /**
      * @var array<string, string>
@@ -82,27 +87,16 @@ abstract class SearchResultsBase implements SearchResultsInterface
         return $this->totalRecords;
     }
 
-    /**
-     * @return array<int, mixed>
-     */
-    public function getItems(): array
+    public function count(): int
     {
-        return $this->items;
+        return count($this->items);
     }
 
-    public function getItem(int $index): mixed
+  /**
+   * @return \ArrayIterator<int, mixed>
+   */
+    public function getIterator(): ArrayIterator
     {
-        return $this->items[$index] ?? null;
-    }
-
-    public function getNextItem(): mixed
-    {
-        $this->lastItemIndex++;
-        return $this->getItem($this->lastItemIndex);
-    }
-
-    public function getLastItemIndex(): int
-    {
-        return max($this->lastItemIndex, 0);
+        return new ArrayIterator($this->items);
     }
 }

@@ -69,15 +69,15 @@ class ClientTest extends TestCaseBase
         );
         $results = $this->restClient->searchDonors(nameLast: 'Doe');
         $this->assertInstanceOf(DonorSearchResults::class, $results);
-        $this->assertContainsOnlyInstancesOf(Donor::class, $results->getItems());
+        $this->assertContainsOnlyInstancesOf(Donor::class, $results);
         $this->assertEquals(2, $results->getTotalPages());
         $this->assertEquals(22, $results->getTotalRecords());
         $this->assertEquals(1, $results->getPage());
-        $this->assertCount(20, $results->getItems());
+        $this->assertCount(20, $results);
         $results->getNextPage();
         $this->assertEquals(2, $results->getPage());
-        $this->assertCount(2, $results->getItems());
-        $this->assertContainsOnlyInstancesOf(Donor::class, $results->getItems());
+        $this->assertCount(2, $results);
+        $this->assertContainsOnlyInstancesOf(Donor::class, $results);
     }
 
     public function testAddDonor(): void

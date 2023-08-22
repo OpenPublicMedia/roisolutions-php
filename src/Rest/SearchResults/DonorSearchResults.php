@@ -4,6 +4,9 @@ namespace OpenPublicMedia\RoiSolutions\Rest\SearchResults;
 
 use OpenPublicMedia\RoiSolutions\Rest\Resource\Donor;
 
+/**
+ * @method \ArrayIterator<int, Donor> getIterator()
+ */
 class DonorSearchResults extends SearchResultsBase
 {
 
