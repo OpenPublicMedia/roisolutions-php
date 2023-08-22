@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenPublicMedia\RoiSolutions\Rest\SearchResults;
+namespace OpenPublicMedia\RoiSolutions\Rest\PagedResults;
 
 use ArrayIterator;
 use Countable;
@@ -11,7 +11,7 @@ use OpenPublicMedia\RoiSolutions\Rest\Traits\HasLinks;
 /**
  * @implements IteratorAggregate<int, mixed>
  */
-abstract class SearchResultsBase implements IteratorAggregate, Countable, SearchResultsInterface
+abstract class PagedResultsBase implements IteratorAggregate, Countable, PagedResultsInterface
 {
     use HasLinks;
 
@@ -33,14 +33,17 @@ abstract class SearchResultsBase implements IteratorAggregate, Countable, Search
     /**
      * @param array<string, string|int> $query
      */
-    final public function __construct(protected readonly Client $client, protected array $query)
-    {
+    final public function __construct(
+        protected readonly Client $client,
+        protected readonly string $endpoint,
+        protected array $query
+    ) {
         $this->update();
     }
 
     public function update(): void
     {
-        $json = $this->client->get('donors', ['query' => $this->query]);
+        $json = $this->client->get($this->endpoint, ['query' => $this->query]);
         $this->page = $json->page;
         $this->limit = $json->limit;
         $this->totalPages = $json->total_pages;

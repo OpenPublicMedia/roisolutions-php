@@ -1,11 +1,11 @@
 <?php
 
-namespace OpenPublicMedia\RoiSolutions\Rest\SearchResults;
+namespace OpenPublicMedia\RoiSolutions\Rest\PagedResults;
 
-interface SearchResultsInterface
+interface PagedResultsInterface
 {
     /**
-     * Process search results items (e.g. to create specific instances).
+     * Process paged results items (e.g. to create specific instances).
      *
      * @param array<int, mixed> $items
      *

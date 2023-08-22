@@ -1,13 +1,13 @@
 <?php
 
-namespace OpenPublicMedia\RoiSolutions\Rest\SearchResults;
+namespace OpenPublicMedia\RoiSolutions\Rest\PagedResults;
 
 use OpenPublicMedia\RoiSolutions\Rest\Resource\Donor;
 
 /**
  * @method \ArrayIterator<int, Donor> getIterator()
  */
-class DonorSearchResults extends SearchResultsBase
+class DonorSearchPagedResults extends PagedResultsBase
 {
 
     /**

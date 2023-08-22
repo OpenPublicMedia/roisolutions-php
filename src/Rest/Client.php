@@ -10,7 +10,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use OpenPublicMedia\RoiSolutions\Rest\Exception\RequestException;
 use OpenPublicMedia\RoiSolutions\Rest\Resource\Donor;
 use OpenPublicMedia\RoiSolutions\Rest\Resource\DonorEmailAddress;
-use OpenPublicMedia\RoiSolutions\Rest\SearchResults\DonorSearchResults;
+use OpenPublicMedia\RoiSolutions\Rest\PagedResults\DonorSearchPagedResults;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -217,7 +217,7 @@ class Client
         ?string $phone = null,
         ?string $externalId = null,
         ?string $externalIdType = null
-    ): DonorSearchResults {
+    ): DonorSearchPagedResults {
         if (($externalId && !$externalIdType)
             || ($externalIdType && !$externalId)
         ) {
@@ -239,7 +239,7 @@ class Client
         }
         $query['page'] = $page;
         $query['limit'] = $limit;
-        return new DonorSearchResults($this, $query);
+        return new DonorSearchPagedResults($this, 'donors', $query);
     }
 
     /**

@@ -9,7 +9,7 @@ use GuzzleHttp\Psr7\Response;
 use OpenPublicMedia\RoiSolutions\Rest\Exception\NotFoundException;
 use OpenPublicMedia\RoiSolutions\Rest\Resource\Donor;
 use OpenPublicMedia\RoiSolutions\Rest\Resource\DonorEmailAddress;
-use OpenPublicMedia\RoiSolutions\Rest\SearchResults\DonorSearchResults;
+use OpenPublicMedia\RoiSolutions\Rest\PagedResults\DonorSearchPagedResults;
 use OpenPublicMedia\RoiSolutions\Test\TestCaseBase;
 
 /**
@@ -68,7 +68,7 @@ class ClientTest extends TestCaseBase
             $this->jsonFixtureResponse('searchDonors-2')
         );
         $results = $this->restClient->searchDonors(nameLast: 'Doe');
-        $this->assertInstanceOf(DonorSearchResults::class, $results);
+        $this->assertInstanceOf(DonorSearchPagedResults::class, $results);
         $this->assertContainsOnlyInstancesOf(Donor::class, $results);
         $this->assertEquals(2, $results->getTotalPages());
         $this->assertEquals(22, $results->getTotalRecords());
