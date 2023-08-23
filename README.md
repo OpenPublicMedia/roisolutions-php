@@ -97,6 +97,7 @@ this project.
   - [x] [Get donor](https://secure2.roisolutions.net/api/help/#/donors/get-donor)
     - [ ] Support for advanced query parameters (`include`, `summary.*`, `donations.*`)
     - [ ] [Get flags](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/get-donor-accountflags) (BETA)
+    - [x] [Get emails](https://secure2.roisolutions.net/api/help/#/contact/get-donor-emails)
   - [x] [Create donor](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/post-donor) (BETA)
     - [x] [Add email](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/post-donor-email)
     - [ ] [Add account flag](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/post-donor-accountflags)

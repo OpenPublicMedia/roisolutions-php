@@ -8,6 +8,7 @@ use DateTime;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\GuzzleException;
 use OpenPublicMedia\RoiSolutions\Rest\Exception\RequestException;
+use OpenPublicMedia\RoiSolutions\Rest\PagedResults\DonorEmailAddressesPagedResults;
 use OpenPublicMedia\RoiSolutions\Rest\Resource\Donor;
 use OpenPublicMedia\RoiSolutions\Rest\Resource\DonorEmailAddress;
 use OpenPublicMedia\RoiSolutions\Rest\PagedResults\DonorSearchPagedResults;
@@ -39,17 +40,17 @@ class Client
      *   `get($key, $default)` methods will suffice.
      */
     public function __construct(
-        private readonly string $userId,
-        private readonly string $password,
+        private readonly string   $userId,
+        private readonly string   $password,
         protected readonly string $clientCode,
-        protected string $baseUri = 'https://secure2.roisolutions.net/api/1.0/',
-        array $httpClientOptions = [],
-        protected ?object $cache = null
+        protected string          $baseUri = 'https://secure2.roisolutions.net/api/1.0/',
+        array                     $httpClientOptions = [],
+        protected ?object         $cache = null
     ) {
         $this->client = new GuzzleClient([
-            'base_uri' => $baseUri,
-            'http_errors' => false,
-        ] + $httpClientOptions);
+                'base_uri' => $baseUri,
+                'http_errors' => false,
+            ] + $httpClientOptions);
     }
 
     /**
@@ -197,6 +198,22 @@ class Client
     public function getDonor(string $roiFamilyId): Donor
     {
         return Donor::fromJson($this->get("donors/$roiFamilyId"));
+    }
+
+    /**
+     * Gets email addresses associated with a ROI Family ID.
+     *
+     * @url https://secure2.roisolutions.net/api/help/#/contact/get-donor-emails
+     */
+    public function getDonorEmailAddresses(
+        string $roiFamilyId,
+        ?int $page = null,
+        ?int $limit = null
+    ): DonorEmailAddressesPagedResults {
+        return new DonorEmailAddressesPagedResults($this, "donors/$roiFamilyId/emails", [
+            'page' => $page,
+            'limit' => $limit,
+        ]);
     }
 
     /**

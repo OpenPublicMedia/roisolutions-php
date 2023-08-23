@@ -7,6 +7,7 @@ namespace OpenPublicMedia\RoiSolutions\Test\Rest;
 use DateTime;
 use GuzzleHttp\Psr7\Response;
 use OpenPublicMedia\RoiSolutions\Rest\Exception\NotFoundException;
+use OpenPublicMedia\RoiSolutions\Rest\PagedResults\DonorEmailAddressesPagedResults;
 use OpenPublicMedia\RoiSolutions\Rest\Resource\Donor;
 use OpenPublicMedia\RoiSolutions\Rest\Resource\DonorEmailAddress;
 use OpenPublicMedia\RoiSolutions\Rest\PagedResults\DonorSearchPagedResults;
@@ -58,6 +59,18 @@ class ClientTest extends TestCaseBase
         $this->mockHandler->append($this->jsonFixtureResponse('postLogon'), $this->apiErrorResponse(404));
         $this->expectException(NotFoundException::class);
         $this->restClient->getDonor("9999999999");
+    }
+
+    public function testGetDonorEmailAddresses(): void
+    {
+        $this->mockHandler->append($this->jsonFixtureResponse('getDonorEmailAddresses'),);
+        $results = $this->restClient->getDonorEmailAddresses('1234567');
+        $this->assertInstanceOf(DonorEmailAddressesPagedResults::class, $results);
+        $this->assertContainsOnlyInstancesOf(DonorEmailAddress::class, $results);
+        $this->assertEquals(1, $results->getTotalPages());
+        $this->assertEquals(1, $results->getTotalRecords());
+        $this->assertEquals(1, $results->getPage());
+        $this->assertCount(1, $results);
     }
 
     public function testSearchDonors(): void

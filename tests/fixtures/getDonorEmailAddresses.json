@@ -1,0 +1,33 @@
+{
+    "page": 1,
+    "limit": 20,
+    "total_pages": 1,
+    "total_records": 1,
+    "links": [
+        {
+            "rel": "self",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/emails/?page=1"
+        }
+    ],
+    "items": [
+        {
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/emails/3982819"
+                },
+                {
+                    "rel": "parent",
+                    "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567"
+                }
+            ],
+            "roi_id": "1234567",
+            "roi_family_id": "1234567",
+            "email_id": "123456789",
+            "email_type": "Primary Email",
+            "contact_status": "Y",
+            "email_address": "donor-email@example.com",
+            "email_bounced": "N"
+        }
+    ]
+}
