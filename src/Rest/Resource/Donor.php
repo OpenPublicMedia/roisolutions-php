@@ -10,7 +10,7 @@ use OpenPublicMedia\RoiSolutions\Rest\Traits\HasRoiId;
 
 final class Donor
 {
-    use HasLinks, HasOriginationVendor, HasRoiId, HasRoiFamilyId;
+    use HasLinks, HasOriginationVendor, HasRoiFamilyId, HasRoiId;
 
     /**
      * @param array<string, string> $links

@@ -3,10 +3,12 @@
 namespace OpenPublicMedia\RoiSolutions\Rest\Resource;
 
 use OpenPublicMedia\RoiSolutions\Rest\Traits\HasLinks;
+use OpenPublicMedia\RoiSolutions\Rest\Traits\HasRoiFamilyId;
+use OpenPublicMedia\RoiSolutions\Rest\Traits\HasRoiId;
 
 final class DonorEmailAddress
 {
-    use HasLinks;
+    use HasLinks, HasRoiFamilyId, HasRoiId;
 
     /**
      * @param array<string, string> $links
