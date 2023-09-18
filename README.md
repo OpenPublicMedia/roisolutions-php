@@ -98,6 +98,9 @@ this project.
     - [ ] Support for advanced query parameters (`include`, `summary.*`, `donations.*`)
     - [ ] [Get flags](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/get-donor-accountflags) (BETA)
     - [x] [Get emails](https://secure2.roisolutions.net/api/help/#/contact/get-donor-emails)
+    - [x] [Get Passport memberships](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/get-donor-mvault) (BETA)
+      - [x] Membership ID property
+      - [ ] Other properties (once finalized)
   - [x] [Create donor](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/post-donor) (BETA)
     - [x] [Add email](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/post-donor-email)
     - [ ] [Add account flag](https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/post-donor-accountflags)

@@ -8,9 +8,11 @@ use DateTime;
 use GuzzleHttp\Psr7\Response;
 use OpenPublicMedia\RoiSolutions\Rest\Exception\NotFoundException;
 use OpenPublicMedia\RoiSolutions\Rest\PagedResults\DonorEmailAddressesPagedResults;
+use OpenPublicMedia\RoiSolutions\Rest\PagedResults\DonorPassportMembershipsPagedResults;
 use OpenPublicMedia\RoiSolutions\Rest\Resource\Donor;
 use OpenPublicMedia\RoiSolutions\Rest\Resource\DonorEmailAddress;
 use OpenPublicMedia\RoiSolutions\Rest\PagedResults\DonorSearchPagedResults;
+use OpenPublicMedia\RoiSolutions\Rest\Resource\DonorPassportMembership;
 use OpenPublicMedia\RoiSolutions\Test\TestCaseBase;
 
 /**
@@ -63,10 +65,22 @@ class ClientTest extends TestCaseBase
 
     public function testGetDonorEmailAddresses(): void
     {
-        $this->mockHandler->append($this->jsonFixtureResponse('getDonorEmailAddresses'),);
+        $this->mockHandler->append($this->jsonFixtureResponse('getDonorEmailAddresses'));
         $results = $this->restClient->getDonorEmailAddresses('1234567');
         $this->assertInstanceOf(DonorEmailAddressesPagedResults::class, $results);
         $this->assertContainsOnlyInstancesOf(DonorEmailAddress::class, $results);
+        $this->assertEquals(1, $results->getTotalPages());
+        $this->assertEquals(1, $results->getTotalRecords());
+        $this->assertEquals(1, $results->getPage());
+        $this->assertCount(1, $results);
+    }
+
+    public function testGetDonorPassportMemberships(): void
+    {
+        $this->mockHandler->append($this->jsonFixtureResponse('getDonorPassportMemberships'));
+        $results = $this->restClient->getDonorPassportMemberships('1234567');
+        $this->assertInstanceOf(DonorPassportMembershipsPagedResults::class, $results);
+        $this->assertContainsOnlyInstancesOf(DonorPassportMembership::class, $results);
         $this->assertEquals(1, $results->getTotalPages());
         $this->assertEquals(1, $results->getTotalRecords());
         $this->assertEquals(1, $results->getPage());

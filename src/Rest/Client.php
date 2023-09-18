@@ -9,6 +9,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\GuzzleException;
 use OpenPublicMedia\RoiSolutions\Rest\Exception\RequestException;
 use OpenPublicMedia\RoiSolutions\Rest\PagedResults\DonorEmailAddressesPagedResults;
+use OpenPublicMedia\RoiSolutions\Rest\PagedResults\DonorPassportMembershipsPagedResults;
 use OpenPublicMedia\RoiSolutions\Rest\Resource\Donor;
 use OpenPublicMedia\RoiSolutions\Rest\Resource\DonorEmailAddress;
 use OpenPublicMedia\RoiSolutions\Rest\PagedResults\DonorSearchPagedResults;
@@ -211,6 +212,22 @@ class Client
         ?int $limit = null
     ): DonorEmailAddressesPagedResults {
         return new DonorEmailAddressesPagedResults($this, "donors/$roiFamilyId/emails", [
+            'page' => $page,
+            'limit' => $limit,
+        ]);
+    }
+
+    /**
+     * Gets Passport memberships associated with a ROI Family ID.
+     *
+     * @url https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/get-donor-mvault
+     */
+    public function getDonorPassportMemberships(
+        string $roiFamilyId,
+        ?int $page = null,
+        ?int $limit = null
+    ): DonorPassportMembershipsPagedResults {
+        return new DonorPassportMembershipsPagedResults($this, "donors/$roiFamilyId/mvault", [
             'page' => $page,
             'limit' => $limit,
         ]);

@@ -1,0 +1,36 @@
+{
+    "page": 1,
+    "limit": 20,
+    "total_pages": 1,
+    "total_records": 1,
+    "links": [
+        {
+            "rel": "self",
+            "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567/mvault/?page=1"
+        }
+    ],
+    "items": [
+        {
+            "links": [
+                {
+                    "rel": "parent",
+                    "href": "http://secure2.roisolutions.net/api/1.0/donors/1234567"
+                }
+            ],
+            "roi_family_id": "1234567",
+            "origination_vendor": "ROI_CONVERSION",
+            "activation_code": "one-two-three-four",
+            "activation_date": "2019-07-11T14:51:59.000Z",
+            "create_date": "2019-07-11T14:51:15.000Z",
+            "expire_date": "2024-03-13T05:00:00.000Z",
+            "grace_period_date": "2024-03-13T05:00:00.000Z",
+            "membership_id": "0123456789abcdef",
+            "mvault_uid": "9c43b246-c639-4d3d-8aa4-ff61d3230172",
+            "offer": "sustainer_active",
+            "provisional": "false",
+            "start_date": "2019-03-12T04:00:00.000Z",
+            "status": "On",
+            "update_date": "2023-03-17T04:00:00.000Z"
+        }
+    ]
+}
