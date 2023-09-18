@@ -2,12 +2,10 @@
 
 namespace OpenPublicMedia\RoiSolutions\Rest\PagedResults;
 
+use ArrayIterator;
 use OpenPublicMedia\RoiSolutions\Rest\Resource\Donor;
 
-/**
- * @method \ArrayIterator<int, Donor> getIterator()
- */
-class DonorSearchPagedResults extends PagedResultsBase
+final class DonorSearchPagedResults extends PagedResultsBase
 {
 
     /**
@@ -21,5 +19,21 @@ class DonorSearchPagedResults extends PagedResultsBase
             $donors[] = Donor::fromJson($item);
         }
         return $donors;
+    }
+
+    /**
+     * @return \ArrayIterator<int, Donor>
+     */
+    public function getIterator(): ArrayIterator
+    {
+        return parent::getIterator();
+    }
+
+    /**
+     * @return array<int, Donor>
+     */
+    public function getItems(): array
+    {
+        return parent::getItems();
     }
 }

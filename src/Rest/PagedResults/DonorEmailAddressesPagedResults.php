@@ -2,12 +2,10 @@
 
 namespace OpenPublicMedia\RoiSolutions\Rest\PagedResults;
 
+use ArrayIterator;
 use OpenPublicMedia\RoiSolutions\Rest\Resource\DonorEmailAddress;
 
-/**
- * @method \ArrayIterator<int, DonorEmailAddress> getIterator()
- */
-class DonorEmailAddressesPagedResults extends PagedResultsBase
+final class DonorEmailAddressesPagedResults extends PagedResultsBase
 {
 
     /**
@@ -21,5 +19,21 @@ class DonorEmailAddressesPagedResults extends PagedResultsBase
             $donors[] = DonorEmailAddress::fromJson($item);
         }
         return $donors;
+    }
+
+    /**
+     * @return \ArrayIterator<int, DonorEmailAddress>
+     */
+    public function getIterator(): ArrayIterator
+    {
+        return parent::getIterator();
+    }
+
+    /**
+     * @return array<int, DonorEmailAddress>
+     */
+    public function getItems(): array
+    {
+        return parent::getItems();
     }
 }

@@ -102,4 +102,12 @@ abstract class PagedResultsBase implements IteratorAggregate, Countable, PagedRe
     {
         return new ArrayIterator($this->items);
     }
+
+    /**
+     * @return array<int, mixed>
+     */
+    public function getItems(): array
+    {
+        return $this->items;
+    }
 }
