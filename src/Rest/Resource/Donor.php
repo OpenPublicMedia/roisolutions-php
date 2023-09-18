@@ -4,10 +4,13 @@ namespace OpenPublicMedia\RoiSolutions\Rest\Resource;
 
 use DateTime;
 use OpenPublicMedia\RoiSolutions\Rest\Traits\HasLinks;
+use OpenPublicMedia\RoiSolutions\Rest\Traits\HasOriginationVendor;
+use OpenPublicMedia\RoiSolutions\Rest\Traits\HasRoiFamilyId;
+use OpenPublicMedia\RoiSolutions\Rest\Traits\HasRoiId;
 
 final class Donor
 {
-    use HasLinks;
+    use HasLinks, HasOriginationVendor, HasRoiId, HasRoiFamilyId;
 
     /**
      * @param array<string, string> $links
@@ -52,21 +55,6 @@ final class Donor
             $json->salutation ?? null,
             $json->address_line ?? null
         );
-    }
-
-    public function getRoiFamilyId(): string
-    {
-        return $this->roiFamilyId;
-    }
-
-    public function getRoiId(): string
-    {
-        return $this->roiId;
-    }
-
-    public function getOriginationVendor(): string
-    {
-        return $this->originationVendor;
     }
 
     public function getAccountStatus(): string

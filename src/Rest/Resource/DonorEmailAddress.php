@@ -37,16 +37,6 @@ final class DonorEmailAddress
         );
     }
 
-    public function getRoiFamilyId(): string
-    {
-        return $this->roiFamilyId;
-    }
-
-    public function getRoiId(): string
-    {
-        return $this->roiId;
-    }
-
     public function getEmailId(): string
     {
         return $this->emailId;
