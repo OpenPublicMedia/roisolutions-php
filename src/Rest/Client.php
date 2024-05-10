@@ -18,7 +18,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * ROI Solutions REST API Client.
  *
- * @url https://secure2.roisolutions.net/api/help
+ * @url https://app.roicrm.net/api/help
  *
  * @package OpenPublicMedia\RoiSolutions\Rest
  */
@@ -44,7 +44,7 @@ class Client
         private readonly string   $userId,
         private readonly string   $password,
         protected readonly string $clientCode,
-        protected string          $baseUri = 'https://secure2.roisolutions.net/api/1.0/',
+        protected string          $baseUri = 'https://app.roicrm.net/api/1.0/',
         array                     $httpClientOptions = [],
         protected ?object         $cache = null
     ) {
@@ -57,7 +57,7 @@ class Client
     /**
      * Gets an API token, refreshing it if necessary.
      *
-     * @url https://secure2.roisolutions.net/api/help/#/system/post-logon
+     * @url https://app.roicrm.net/api/help/#/system/post-logon
      */
     private function getToken(): ?string
     {
@@ -158,7 +158,7 @@ class Client
     /**
      * Sends a "ping" to the API endpoint.
      *
-     * @url https://secure2.roisolutions.net/api/help/#/system/get-ping
+     * @url https://app.roicrm.net/api/help/#/system/get-ping
      *
      * @return string
      *   "pong!" if the API is up and healthy.
@@ -172,7 +172,7 @@ class Client
     /**
      * Gets the endpoint date and time in UTC.
      *
-     * @url https://secure2.roisolutions.net/api/help/#/system/get-time
+     * @url https://app.roicrm.net/api/help/#/system/get-time
      */
     public function getUtcTime(): DateTime
     {
@@ -183,7 +183,7 @@ class Client
     /**
      * Gets the endpoint date and time in the endpoint timezone.
      *
-     * @url https://secure2.roisolutions.net/api/help/#/system/get-time
+     * @url https://app.roicrm.net/api/help/#/system/get-time
      */
     public function getSystemTime(): DateTime
     {
@@ -194,7 +194,7 @@ class Client
     /**
      * Gets a single donor record based on a ROI Family ID.
      *
-     * @url https://secure2.roisolutions.net/api/help/#/donors/get-donor
+     * @url https://app.roicrm.net/api/help/#/donors/get-donor
      */
     public function getDonor(string $roiFamilyId): Donor
     {
@@ -204,7 +204,7 @@ class Client
     /**
      * Gets email addresses associated with a ROI Family ID.
      *
-     * @url https://secure2.roisolutions.net/api/help/#/contact/get-donor-emails
+     * @url https://app.roicrm.net/api/help/#/contact/get-donor-emails
      */
     public function getDonorEmailAddresses(
         string $roiFamilyId,
@@ -220,7 +220,7 @@ class Client
     /**
      * Gets Passport memberships associated with a ROI Family ID.
      *
-     * @url https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/get-donor-mvault
+     * @url https://app.roicrm.net/api/help/#/BETA%20TESTING/get-donor-mvault
      */
     public function getDonorPassportMemberships(
         string $roiFamilyId,
@@ -236,7 +236,7 @@ class Client
     /**
      * Searches donor records with provided criteria.
      *
-     * @url https://secure2.roisolutions.net/api/help/#/donors/get-donors
+     * @url https://app.roicrm.net/api/help/#/donors/get-donors
      */
     public function searchDonors(
         ?int $page = null,
@@ -279,7 +279,7 @@ class Client
     /**
      * Adds a new donor.
      *
-     * @url https://secure2.roisolutions.net/api/help/#/BETA%20TESTING/post-donor
+     * @url https://app.roicrm.net/api/help/#/BETA%20TESTING/post-donor
      */
     public function addDonor(
         string $originationVendor,
