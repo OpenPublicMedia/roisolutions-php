@@ -14,9 +14,9 @@ class RequestException extends RuntimeException
     public function __construct(
         private readonly int $statusCodeReported,
         private readonly string $title,
-        private readonly string $detail,
-        private readonly string $instanceCode,
-        private readonly string $helpLink
+        private readonly ?string $detail = null,
+        private readonly ?string $instanceCode = null,
+        private readonly ?string $helpLink = null
     ) {
         parent::__construct($this->title, $this->statusCodeReported);
     }
@@ -27,18 +27,18 @@ class RequestException extends RuntimeException
         // The reported status code and actual response status code do not
         // always match. Create a specific exception for ket status codes when
         // possible.
-        $exception = match ($details->statusCode) {
+        $exception = match ($details?->statusCode) {
             401 => AccessDeniedException::class,
             404 => NotFoundException::class,
             429 => TooManyRequestsException::class,
             default => RequestException::class,
         };
         return new $exception(
-            $details->statusCode,
-            $details->title,
-            $details->detail,
-            $details->instanceCode,
-            $details->helpLink,
+            $details?->statusCode ?? $response->getStatusCode(),
+            $details?->title ?? $response->getReasonPhrase(),
+            $details?->detail,
+            $details?->instanceCode,
+            $details?->helpLink,
         );
     }
 
@@ -52,18 +52,18 @@ class RequestException extends RuntimeException
         return $this->title;
     }
 
-    public function getDetail(): string
+    public function getDetail(): ?string
     {
-        return $this->detail;
+        return $this?->detail;
     }
 
-    public function getInstanceCode(): string
+    public function getInstanceCode(): ?string
     {
-        return $this->instanceCode;
+        return $this?->instanceCode;
     }
 
-    public function getHelpLink(): string
+    public function getHelpLink(): ?string
     {
-        return $this->helpLink;
+        return $this?->helpLink;
     }
 }
